@@ -1,0 +1,22 @@
+teamName: team-1
+appName: podtato-head-option-5
+repoUrl: https://github.com/kubriX-demo/team-1-podtato-head-option-5
+createAppNamespace: true
+stages:
+  - name: "test"
+    targetClusterStage: "nonprod"
+    subscriptions: 
+      # be aware that you MUST currently name the warehouse "warehouse-{{ .Values.appName }}"
+      # because it gets created with this name implicitly.
+      # todo: give the user the option to define the warehouse as he likes it
+      warehouse: "warehouse-{{ .Values.appName }}"
+  - name: "qa"
+    targetClusterStage: "nonprod"
+    subscriptions: 
+      upstreamStages:
+      - name: test
+  - name: "prod"
+    targetClusterStage: "prod"
+    subscriptions: 
+      upstreamStages:
+      - name: qa

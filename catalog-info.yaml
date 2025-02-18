@@ -1,0 +1,162 @@
+# prod
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "sx-cnp-oss-jokl-app-prod"
+  description: "sx-cnp-oss-jokl-app-prod"
+  tags:
+    - sx-cnp-oss
+    - template
+    - kargo
+    - metalstack
+    - kubex
+  links:
+    - url: http://sx-cnp-oss-jokl-app-prod.demo.kubrix.cloud
+      title: Prod Instance of sx-cnp-oss-jokl-app
+      icon: web
+  annotations:
+    github.com/project-slug: kubriX-demo/sx-cnp-oss-jokl-app
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=jokl-app-prod'
+    argocd/app-namespace: adn-sx-cnp-oss
+    argocd/app-name: jokl-app-prod
+    backstage.io/techdocs-ref: dir:.
+    kargo-project: "https://kargo.demo.kubrix.cloud/project/sx-cnp-oss-jokl-app-kargo-project"
+    grafana/dashboard-selector: "(tags @> 'suXess')"
+    grafana/overview-dashboard: "https://grafana.demo.kubrix.cloud/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=kubrix-demo&var-namespace=sx-cnp-oss-jokl-app-prod&var-resolution=30s&var-created_by=All"
+spec:
+  type: service
+  lifecycle: prod
+  owner: "sx-cnp-oss"
+  system: jokl-app
+  dependsOn:
+    - resource:argocd
+    - resource:kubecost
+    - resource:grafana
+    - resource:metalstack
+    - resource:loki
+    - resource:kyverno
+    - resource:tempo
+    - resource:backstage
+  subcomponentOf: sx-cnp-oss-jokl-app
+---
+#qa
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "sx-cnp-oss-jokl-app-qa"
+  description: "sx-cnp-oss-jokl-app-qa"
+  tags:
+    - sx-cnp-oss
+    - template
+    - kargo
+    - metalstack
+    - kubex
+  links:
+    - url: http://sx-cnp-oss-jokl-app-qa.demo.kubrix.cloud
+      title: QA Instance of sx-cnp-oss-jokl-app
+      icon: web
+  annotations:
+    github.com/project-slug: kubriX-demo/sx-cnp-oss-jokl-app
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=jokl-app-qa'
+    argocd/app-namespace: adn-sx-cnp-oss
+    argocd/app-name: jokl-app-qa
+    backstage.io/techdocs-ref: dir:.
+    kargo-project: "https://kargo.demo.kubrix.cloud/project/sx-cnp-oss-jokl-app-kargo-project"
+    grafana/dashboard-selector: "(tags @> 'suXess')"
+    grafana/overview-dashboard: "https://grafana.demo.kubrix.cloud/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=kubrix-demo&var-namespace=sx-cnp-oss-jokl-app-qa&var-resolution=30s&var-created_by=All"
+spec:
+  type: service
+  lifecycle: qa
+  owner: "sx-cnp-oss"
+  system: jokl-app
+  dependsOn:
+    - resource:argocd
+    - resource:kubecost
+    - resource:grafana
+    - resource:metalstack
+    - resource:loki
+    - resource:kyverno
+    - resource:tempo
+    - resource:backstage
+  subcomponentOf: sx-cnp-oss-jokl-app
+---
+# test
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "sx-cnp-oss-jokl-app-test"
+  description: "sx-cnp-oss-jokl-app-test"
+  tags:
+    - sx-cnp-oss
+    - template
+    - kargo
+    - metalstack
+    - kubex
+  links:
+    - url: http://sx-cnp-oss-jokl-app-test.demo.kubrix.cloud
+      title: Test Instance of sx-cnp-oss-jokl-app
+      icon: web
+  annotations:
+    github.com/project-slug: kubriX-demo/sx-cnp-oss-jokl-app
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=jokl-app-test'
+    argocd/app-namespace: adn-sx-cnp-oss
+    argocd/app-name: jokl-app-test
+    backstage.io/techdocs-ref: dir:.
+    kargo-project: "https://kargo.demo.kubrix.cloud/project/sx-cnp-oss-jokl-app-kargo-project"
+    grafana/dashboard-selector: "(tags @> 'suXess')"
+    grafana/overview-dashboard: "https://grafana.demo.kubrix.cloud/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=kubrix-demo&var-namespace=sx-cnp-oss-jokl-app-test&var-resolution=30s&var-created_by=All"
+spec:
+  type: service
+  lifecycle: test
+  owner: "sx-cnp-oss"
+  system: jokl-app
+  dependsOn:
+    - resource:argocd
+    - resource:kubecost
+    - resource:grafana
+    - resource:metalstack
+    - resource:loki
+    - resource:kyverno
+    - resource:tempo
+    - resource:backstage
+  subcomponentOf: sx-cnp-oss-jokl-app
+---
+# main, at the end of catalog-info.yaml so that register link is on main component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "sx-cnp-oss-jokl-app"
+  description: "sx-cnp-oss-jokl-app"
+  tags:
+    - sx-cnp-oss
+    - template
+    - kargo
+    - metalstack
+    - kubex
+  links:
+    - url: https://argocd.demo.kubrix.cloud/applications/adn-sx-cnp-oss/sx-cnp-oss-jokl-app?resource=
+      title: ArgoCD Application Information of sx-cnp-oss-jokl-app
+      icon: web
+  annotations:
+    github.com/project-slug: kubriX-demo/sx-cnp-oss-jokl-app
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=sx-cnp-oss-jokl-app'
+    argocd/app-namespace: adn-sx-cnp-oss
+    argocd/app-name: sx-cnp-oss-jokl-app
+    backstage.io/techdocs-ref: dir:.
+    kargo-project: "https://kargo.demo.kubrix.cloud/project/sx-cnp-oss-jokl-app-kargo-project"
+    grafana/dashboard-selector: "(tags @> 'suXess')"
+spec:
+  type: service
+  lifecycle: experimental
+  owner: "sx-cnp-oss"
+  system: jokl-app
+  dependsOn:
+    - resource:argocd
+    - resource:kubecost
+    - resource:grafana
+    - resource:metalstack
+    - resource:loki
+    - resource:kyverno
+    - resource:tempo
+    - resource:backstage
+---

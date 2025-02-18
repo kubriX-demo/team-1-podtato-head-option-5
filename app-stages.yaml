@@ -1,0 +1,39 @@
+teamName: team-1
+appName: podtato-head-option-5
+repoUrl: https://github.com/kubriX-demo/team-1-podtato-head-option-5
+createAppNamespace: true
+stages:
+  - name: "test"
+    targetClusterStage: "nonprod"
+    subscriptions:
+      warehouse: "warehouse-{{ .Values.appName }}"
+    requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: warehouse-{{ .Values.appName }}
+      sources:
+        direct: true
+  - name: "qa"
+    targetClusterStage: "nonprod"
+    subscriptions:
+      upstreamStages:
+      - name: test
+    requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: warehouse-{{ .Values.appName }}
+      sources:
+        stages:
+        - test
+  - name: "prod"
+    targetClusterStage: "prod"
+    subscriptions:
+      upstreamStages:
+      - name: qa
+    requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: warehouse-{{ .Values.appName }}
+      sources:
+        stages:
+        - qa

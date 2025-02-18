@@ -5,14 +5,13 @@ metadata:
   name: "podtato-head-option-5-prod"
   description: "podtato-head-option-5-prod"
   tags:
-    - sx-cnp-oss
     - template
     - kargo
     - metalstack
-    - kubex
+    - kubrix
   links:
-    - url: http://sx-cnp-oss-jokl-app-prod.demo.kubrix.cloud/
-      title: Prod Instance of sx-cnp-oss-jokl-app
+    - url: http://podtato-head-option-5-prod.demo.kubrix.cloud/
+      title: Prod Instance of podtato-head-option-5
       icon: web
   annotations:
     github.com/project-slug: kubriX-demo/team-1-podtato-head-option-5
@@ -26,7 +25,7 @@ metadata:
 spec:
   type: service
   lifecycle: prod
-  owner: "sx-cnp-oss"
+  owner: "kubrix"
   system: jokl-app
   dependsOn:
     - resource:argocd
@@ -37,7 +36,7 @@ spec:
     - resource:kyverno
     - resource:tempo
     - resource:backstage
-  subcomponentOf: sx-cnp-oss-jokl-app
+  subcomponentOf: podtato-head-option-5
 ---
 #qa
 apiVersion: backstage.io/v1alpha1
@@ -46,14 +45,13 @@ metadata:
   name: "podtato-head-option-5-qa"
   description: "podtato-head-option-5-qa"
   tags:
-    - sx-cnp-oss
     - template
     - kargo
     - metalstack
-    - kubex
+    - kubrix
   links:
-    - url: http://sx-cnp-oss-jokl-app-qa.demo.kubrix.cloud
-      title: QA Instance of sx-cnp-oss-jokl-app
+    - url: http://podtato-head-option-5-qa.demo.kubrix.cloud
+      title: QA Instance of podtato-head-option-5
       icon: web
   annotations:
     github.com/project-slug: kubriX-demo/team-1-podtato-head-option-5
@@ -67,7 +65,7 @@ metadata:
 spec:
   type: service
   lifecycle: qa
-  owner: "sx-cnp-oss"
+  owner: "kubrix"
   system: jokl-app
   dependsOn:
     - resource:argocd
@@ -78,7 +76,7 @@ spec:
     - resource:kyverno
     - resource:tempo
     - resource:backstage
-  subcomponentOf: sx-cnp-oss-jokl-app
+  subcomponentOf: podtato-head-option-5
 ---
 # test
 apiVersion: backstage.io/v1alpha1
@@ -87,14 +85,13 @@ metadata:
   name: "podtato-head-option-5-test"
   description: "podtato-head-option-5-test"
   tags:
-    - sx-cnp-oss
     - template
     - kargo
     - metalstack
-    - kubex
+    - kubrix
   links:
-    - url: http://sx-cnp-oss-jokl-app-test.demo.kubrix.cloud
-      title: Test Instance of sx-cnp-oss-jokl-app
+    - url: http://podtato-head-option-5-test.demo.kubrix.cloud
+      title: Test Instance of podtato-head-option-5
       icon: web
   annotations:
     github.com/project-slug: kubriX-demo/team-1-podtato-head-option-5
@@ -108,7 +105,7 @@ metadata:
 spec:
   type: service
   lifecycle: test
-  owner: "sx-cnp-oss"
+  owner: "kubrix"
   system: jokl-app
   dependsOn:
     - resource:argocd
@@ -119,7 +116,7 @@ spec:
     - resource:kyverno
     - resource:tempo
     - resource:backstage
-  subcomponentOf: sx-cnp-oss-jokl-app
+  subcomponentOf: podtato-head-option-5
 ---
 # main, at the end of catalog-info.yaml so that register link is on main component
 apiVersion: backstage.io/v1alpha1
@@ -128,14 +125,13 @@ metadata:
   name: "podtato-head-option-5"
   description: "podtato-head-option-5"
   tags:
-    - sx-cnp-oss
     - template
     - kargo
     - metalstack
-    - kubex
+    - kubrix
   links:
-    - url: https://argocd.demo.kubrix.cloud/applications/adn-sx-cnp-oss/sx-cnp-oss-jokl-app?resource=
-      title: ArgoCD Application Information of sx-cnp-oss-jokl-app
+    - url: https://argocd.demo.kubrix.cloud/applications/adn-team-1/podtato-head-option-5?resource=
+      title: ArgoCD Application Information of podtato-head-option-5
       icon: web
   annotations:
     github.com/project-slug: kubriX-demo/team-1-podtato-head-option-5
@@ -148,7 +144,7 @@ metadata:
 spec:
   type: service
   lifecycle: experimental
-  owner: "sx-cnp-oss"
+  owner: "kubrix"
   system: jokl-app
   dependsOn:
     - resource:argocd
